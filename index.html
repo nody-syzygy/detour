@@ -590,10 +590,10 @@ function grade() {
 // ==========================================
 async function gradeAndSend() {
 
-  if (!GAS_URL || GAS_URL === "https://script.google.com/macros/s/AKfycby-C_hc1WDQAzpdMBBR5CYi0mHK3-jTL2IFP_Z4lYDQhlQMH6SwHUMJa270wDpsGYD3vg/exec") {
-    alert("GASのURLが設定されていません。");
-    return;
-  }
+if (!GAS_URL || GAS_URL === "ここにGASのURL") {
+  alert("GASのURLが設定されていません。");
+  return;
+}
 
   const name =
     document.getElementById("studentName").value.trim();
