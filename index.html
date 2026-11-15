@@ -1,10 +1,618 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>解答フォーム</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未完成</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Yu Mincho", "游明朝", serif;
+    background: #e9ecef;
+    margin: 0;
+    padding: 30px 12px;
+    color: #222;
+  }
+
+  .paper {
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    padding: 40px 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  }
+
+  h1 {
+    text-align: center;
+    letter-spacing: 5px;
+    margin: 0 0 35px;
+    font-size: 28px;
+  }
+
+  .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+
+  .info-item {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 6px;
+  }
+
+  .info-item input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 17px;
+    padding: 3px 5px;
+  }
+
+  .section {
+    margin-top: 30px;
+  }
+
+  .section-title {
+    font-weight: bold;
+    font-size: 19px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+  }
+
+  .question {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0;
+    min-height: 38px;
+  }
+
+  .label {
+    width: 90px;
+    flex-shrink: 0;
+    font-size: 17px;
+  }
+
+  .answer-input {
+    width: 100%;
+    max-width: 400px;
+    min-width: 0;
+    border: none;
+    border-bottom: 2px solid #222;
+    border-radius: 0;
+    outline: none;
+    font-family: "Times New Roman", "Yu Mincho", serif;
+    font-size: 18px;
+    padding: 5px 8px;
+    text-align: center;
+    background: transparent;
+  }
+
+  .answer-input:focus {
+    border-bottom: 2px solid #2878c8;
+  }
+
+  .result {
+    width: 35px;
+    flex-shrink: 0;
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .not-graded {
+    color: #888;
+    font-size: 13px;
+    font-weight: normal;
+    width: auto;
+  }
+
+  .score {
+    text-align: right;
+    font-size: 21px;
+    font-weight: bold;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 2px solid #222;
+  }
+
+  .score-note {
+    text-align: right;
+    color: #666;
+    font-size: 13px;
+    margin-top: 5px;
+  }
+
+  .comment-area {
+    margin-top: 25px;
+  }
+
+  .comment-area label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .comment-area textarea {
+    width: 100%;
+    min-height: 75px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 8px;
+    border: 1px solid #aaa;
+  }
+
+  .buttons {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  button {
+    padding: 10px 28px;
+    margin: 5px 8px;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #555;
+    background: #f7f7f7;
+    border-radius: 3px;
+  }
+
+  button:hover {
+    background: #e5e5e5;
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #sendStatus {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 10px 5px;
+    }
+
+    .paper {
+      padding: 25px 18px;
+    }
+
+    h1 {
+      font-size: 23px;
+      letter-spacing: 3px;
+    }
+
+    .info {
+      gap: 12px;
+    }
+
+    .info-item {
+      font-size: 14px;
+    }
+
+    .label {
+      width: 75px;
+      font-size: 15px;
+    }
+
+    .answer-input {
+      font-size: 16px;
+    }
+
+    .question {
+      gap: 5px;
+    }
+  }
+
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+    }
+
+    .paper {
+      box-shadow: none;
+      max-width: none;
+      padding: 20px;
+    }
+
+    button,
+    #sendStatus,
+    .comment-area {
+      display: none;
+    }
+
+    .answer-input {
+      border-bottom: 1px solid #222;
+    }
+  }
+</style>
 </head>
+
 <body>
-  後日公開
+
+<div class="paper">
+
+  <h1>数 学</h1>
+
+  <div class="info">
+    <div class="info-item">
+      氏名：
+      <input type="text" id="studentName" autocomplete="name">
+    </div>
+    <div class="info-item">
+      得点：
+      <span id="topScore"></span>
+    </div>
+  </div>
+
+  <!-- 大問1 -->
+  <div class="section">
+    <div class="section-title">大問1</div>
+
+    <div class="question">
+      <div class="label">(1)</div>
+      <input class="answer-input" id="q1_1">
+      <span class="result" id="r_q1_1"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(2)</div>
+      <input class="answer-input" id="q1_2">
+      <span class="result" id="r_q1_2"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(3)</div>
+      <input class="answer-input" id="q1_3">
+      <span class="result" id="r_q1_3"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(4)</div>
+      <input class="answer-input" id="q1_4">
+      <span class="result" id="r_q1_4"></span>
+    </div>
+  </div>
+
+  <!-- 大問2 -->
+  <div class="section">
+    <div class="section-title">大問2</div>
+
+    <div class="question">
+      <div class="label">解答</div>
+      <input class="answer-input" id="q2">
+      <span class="result" id="r_q2"></span>
+    </div>
+  </div>
+
+  <!-- 大問3 -->
+  <div class="section">
+    <div class="section-title">大問3</div>
+
+    <div class="question">
+      <div class="label">(1)</div>
+      <input class="answer-input" id="q3_1">
+      <span class="result" id="r_q3_1"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(2)</div>
+      <input class="answer-input" id="q3_2">
+      <span class="result" id="r_q3_2"></span>
+    </div>
+  </div>
+
+  <!-- 大問4 -->
+  <div class="section">
+    <div class="section-title">大問4</div>
+
+    <div class="question">
+      <div class="label">(1)</div>
+      <input class="answer-input" id="q4_1">
+      <span class="result not-graded" id="r_q4_1">採点対象外</span>
+    </div>
+
+    <div class="question">
+      <div class="label">(2)</div>
+      <input class="answer-input" id="q4_2">
+      <span class="result not-graded" id="r_q4_2">採点対象外</span>
+    </div>
+  </div>
+
+  <!-- 大問5 -->
+  <div class="section">
+    <div class="section-title">大問5</div>
+
+    <div class="question">
+      <div class="label">(1)(i)</div>
+      <input class="answer-input" id="q5_1_i">
+      <span class="result" id="r_q5_1_i"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(1)(ii)</div>
+      <input class="answer-input" id="q5_1_ii">
+      <span class="result" id="r_q5_1_ii"></span>
+    </div>
+
+    <div class="question">
+      <div class="label">(2)</div>
+      <input class="answer-input" id="q5_2">
+      <span class="result" id="r_q5_2"></span>
+    </div>
+  </div>
+
+  <div class="comment-area">
+    <label for="comment">コメント（任意）</label>
+    <textarea id="comment" placeholder="質問やコメントがあれば入力してください。"></textarea>
+  </div>
+
+  <div class="buttons">
+    <button type="button" onclick="grade()">採点</button>
+    <button type="button" onclick="sendAnswers()" id="sendButton">解答を送信</button>
+    <button type="button" onclick="resetAll()">リセット</button>
+  </div>
+
+  <div class="score" id="score"></div>
+  <div class="score-note">※大問4は現在、採点対象外です。</div>
+  <div id="sendStatus"></div>
+
+</div>
+
+<script>
+  // ==========================================
+  // Google Apps ScriptのURLをここに設定
+  // ==========================================
+  const GAS_URL = "ここにGASのURLを貼る";
+
+  // ==========================================
+  // 模範解答
+  // acceptedに書かれた表記を正解として扱う
+  // ==========================================
+  const answers = {
+    q1_1: {
+      accepted: ["1"],
+      points: 10
+    },
+    q1_2: {
+      accepted: ["10π^2", "10*pi^2"],
+      points: 10
+    },
+    q1_3: {
+      accepted: ["8"],
+      points: 10
+    },
+    q1_4: {
+      accepted: ["π", "pi"],
+      points: 10
+    },
+    q2: {
+      accepted: ["√2-1", "sqrt(2)-1"],
+      points: 10
+    },
+    q3_1: {
+      accepted: ["27/2"],
+      points: 10
+    },
+    q3_2: {
+      accepted: [
+        "(81k+27)/8",
+        "81k+27/8"
+      ],
+      points: 10
+    },
+    q5_1_i: {
+      accepted: ["16/9"],
+      points: 10
+    },
+    q5_1_ii: {
+      accepted: [
+        "(450π/9)-(192/7)",
+        "450π/9-192/7",
+        "50π-192/7",
+        "50*pi-192/7"
+      ],
+      points: 10
+    },
+    q5_2: {
+      accepted: ["2,3", "3,2"],
+      points: 10
+    }
+  };
+
+  const totalPoints = 100;
+  const allQuestionIds = [
+    "q1_1", "q1_2", "q1_3", "q1_4",
+    "q2",
+    "q3_1", "q3_2",
+    "q4_1", "q4_2",
+    "q5_1_i", "q5_1_ii", "q5_2"
+  ];
+
+  let latestResults = null;
+  let latestScore = null;
+
+  // ==========================================
+  // 入力文字の正規化
+  // ==========================================
+  function normalize(value) {
+    return value
+      .trim()
+      .replace(/²/g, "^2")
+      .replace(/³/g, "^3")
+      .normalize("NFKC")
+      .replace(/\s+/g, "")
+      .replace(/−/g, "-")
+      .replace(/ー/g, "-")
+      .replace(/×/g, "*")
+      .replace(/·/g, "*")
+      .replace(/÷/g, "/")
+      .replace(/π/g, "pi")
+      .replace(/√2/g, "sqrt(2)")
+      .toLowerCase();
+  }
+
+  // ==========================================
+  // 採点
+  // ==========================================
+  function grade() {
+    let score = 0;
+    const results = {};
+
+    for (const id in answers) {
+      const input = document.getElementById(id);
+      const result = document.getElementById("r_" + id);
+
+      const userAnswer = normalize(input.value);
+      const correctAnswers = answers[id].accepted.map(normalize);
+
+      const isCorrect =
+        userAnswer !== "" &&
+        correctAnswers.includes(userAnswer);
+
+      results[id] = isCorrect;
+
+      if (isCorrect) {
+        score += answers[id].points;
+        result.textContent = "○";
+        result.style.color = "#16833b";
+      } else {
+        result.textContent = "×";
+        result.style.color = "#d22";
+      }
+    }
+
+    latestScore = score;
+    latestResults = results;
+
+    document.getElementById("score").textContent =
+      `得点：${score} / ${totalPoints} 点`;
+
+    document.getElementById("topScore").textContent =
+      `${score} / ${totalPoints} 点`;
+
+    document.getElementById("sendStatus").textContent = "";
+  }
+
+  // ==========================================
+  // Googleスプレッドシートへ送信
+  // ==========================================
+  async function sendAnswers() {
+    if (!GAS_URL || GAS_URL === "ここにGASのURLを貼る") {
+      alert("GASのURLが設定されていません。");
+      return;
+    }
+
+    // 採点前なら自動で採点する
+    if (latestResults === null) {
+      grade();
+    }
+
+    const name = document.getElementById("studentName").value.trim();
+
+    if (name === "") {
+      alert("氏名を入力してください。");
+      return;
+    }
+
+    if (!confirm("この解答を送信しますか？")) {
+      return;
+    }
+
+    const button = document.getElementById("sendButton");
+    button.disabled = true;
+    button.textContent = "送信中...";
+
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("time", new Date().toLocaleString("ja-JP"));
+    formData.append("score", latestScore);
+    formData.append("total", totalPoints);
+    formData.append(
+      "comment",
+      document.getElementById("comment").value
+    );
+
+    for (const id of allQuestionIds) {
+      const input = document.getElementById(id);
+      formData.append(id, input.value);
+
+      if (latestResults && id in latestResults) {
+        formData.append(id + "_result",
+          latestResults[id] ? "正解" : "不正解");
+      } else {
+        formData.append(id + "_result", "採点対象外");
+      }
+    }
+
+    try {
+      await fetch(GAS_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      document.getElementById("sendStatus").textContent =
+        "送信処理を行いました。スプレッドシートに記録されたか確認してください。";
+
+    } catch (error) {
+      document.getElementById("sendStatus").textContent =
+        "送信時にエラーが発生しました。通信環境やGASの設定を確認してください。";
+    } finally {
+      button.disabled = false;
+      button.textContent = "解答を送信";
+    }
+  }
+
+  // ==========================================
+  // リセット
+  // ==========================================
+  function resetAll() {
+    if (!confirm("入力内容と採点結果をすべて消去しますか？")) {
+      return;
+    }
+
+    for (const id of allQuestionIds) {
+      document.getElementById(id).value = "";
+
+      const result = document.getElementById("r_" + id);
+
+      if (answers[id]) {
+        result.textContent = "";
+        result.style.color = "";
+      }
+    }
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("comment").value = "";
+    document.getElementById("score").textContent = "";
+    document.getElementById("topScore").textContent = "";
+    document.getElementById("sendStatus").textContent = "";
+
+    latestResults = null;
+    latestScore = null;
+  }
+</script>
+
 </body>
 </html>
