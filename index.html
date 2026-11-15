@@ -4,246 +4,247 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>未完成</title>
+<title>数学</title>
+
+<script src="https://cdn.jsdelivr.net/npm/nerdamer@2.0.1/dist/bundle.js"></script>
 
 <style>
-  * {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Yu Mincho", "游明朝", serif;
+  background: #e9ecef;
+  margin: 0;
+  padding: 30px 12px;
+  color: #222;
+}
+
+.paper {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 40px 50px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 5px;
+  margin: 0 0 35px;
+  font-size: 28px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #222;
+  padding-bottom: 6px;
+}
+
+.info-item input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 17px;
+  padding: 3px 5px;
+}
+
+/* 注意事項 */
+.notice {
+  border: 1px solid #999;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+  background: #fafafa;
+}
+
+.notice-title {
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.notice-content {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.section { margin-top: 30px; }
+
+.section-title {
+  font-weight: bold;
+  font-size: 19px;
+  border-bottom: 1px solid #999;
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+  min-height: 38px;
+}
+
+.label {
+  width: 90px;
+  flex-shrink: 0;
+  font-size: 17px;
+}
+
+.answer-input {
+  width: 100%;
+  max-width: 400px;
+  min-width: 0;
+  border: none;
+  border-bottom: 2px solid #222;
+  border-radius: 0;
+  outline: none;
+  font-family: "Times New Roman", "Yu Mincho", serif;
+  font-size: 18px;
+  padding: 5px 8px;
+  text-align: center;
+  background: transparent;
+}
+
+.answer-input:focus {
+  border-bottom: 2px solid #2878c8;
+}
+
+.result {
+  width: 35px;
+  flex-shrink: 0;
+  font-size: 19px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.not-graded {
+  color: #888;
+  font-size: 13px;
+  font-weight: normal;
+  width: auto;
+}
+
+.score {
+  text-align: right;
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 2px solid #222;
+}
+
+.score-note {
+  text-align: right;
+  color: #666;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.comment-area { margin-top: 25px; }
+
+.comment-area label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.comment-area textarea {
+  width: 100%;
+  min-height: 75px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px;
+  border: 1px solid #aaa;
+}
+
+.buttons {
+  text-align: center;
+  margin-top: 30px;
+}
+
+button {
+  padding: 12px 32px;
+  margin: 5px 8px;
+  font-family: inherit;
+  font-size: 17px;
+  cursor: pointer;
+  border: 1px solid #555;
+  background: #f7f7f7;
+  border-radius: 3px;
+}
+
+button:hover { background: #e5e5e5; }
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#sendStatus {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  body { padding: 10px 5px; }
+
+  .paper { padding: 25px 18px; }
+
+  h1 {
+    font-size: 23px;
+    letter-spacing: 3px;
   }
 
+  .info { gap: 12px; }
+
+  .info-item { font-size: 14px; }
+
+  .label {
+    width: 75px;
+    font-size: 15px;
+  }
+
+  .answer-input { font-size: 16px; }
+
+  .question { gap: 5px; }
+}
+
+@media print {
   body {
-    font-family: "Yu Mincho", "游明朝", serif;
-    background: #e9ecef;
-    margin: 0;
-    padding: 30px 12px;
-    color: #222;
+    background: #fff;
+    padding: 0;
   }
 
   .paper {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    padding: 40px 50px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    box-shadow: none;
+    max-width: none;
+    padding: 20px;
   }
 
-  h1 {
-    text-align: center;
-    letter-spacing: 5px;
-    margin: 0 0 35px;
-    font-size: 28px;
-  }
-
-  .info {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    margin-bottom: 30px;
-  }
-
-  .info-item {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #222;
-    padding-bottom: 6px;
-  }
-
-  .info-item input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    outline: none;
-    font-family: inherit;
-    font-size: 17px;
-    padding: 3px 5px;
-  }
-
-  .section {
-    margin-top: 30px;
-  }
-
-  .section-title {
-    font-weight: bold;
-    font-size: 19px;
-    border-bottom: 1px solid #999;
-    padding-bottom: 6px;
-    margin-bottom: 15px;
-  }
-
-  .question {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 14px 0;
-    min-height: 38px;
-  }
-
-  .label {
-    width: 90px;
-    flex-shrink: 0;
-    font-size: 17px;
+  button,
+  #sendStatus,
+  .comment-area {
+    display: none;
   }
 
   .answer-input {
-    width: 100%;
-    max-width: 400px;
-    min-width: 0;
-    border: none;
-    border-bottom: 2px solid #222;
-    border-radius: 0;
-    outline: none;
-    font-family: "Times New Roman", "Yu Mincho", serif;
-    font-size: 18px;
-    padding: 5px 8px;
-    text-align: center;
-    background: transparent;
+    border-bottom: 1px solid #222;
   }
-
-  .answer-input:focus {
-    border-bottom: 2px solid #2878c8;
-  }
-
-  .result {
-    width: 35px;
-    flex-shrink: 0;
-    font-size: 19px;
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .not-graded {
-    color: #888;
-    font-size: 13px;
-    font-weight: normal;
-    width: auto;
-  }
-
-  .score {
-    text-align: right;
-    font-size: 21px;
-    font-weight: bold;
-    margin-top: 30px;
-    padding-top: 15px;
-    border-top: 2px solid #222;
-  }
-
-  .score-note {
-    text-align: right;
-    color: #666;
-    font-size: 13px;
-    margin-top: 5px;
-  }
-
-  .comment-area {
-    margin-top: 25px;
-  }
-
-  .comment-area label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-
-  .comment-area textarea {
-    width: 100%;
-    min-height: 75px;
-    resize: vertical;
-    font-family: inherit;
-    font-size: 15px;
-    padding: 8px;
-    border: 1px solid #aaa;
-  }
-
-  .buttons {
-    text-align: center;
-    margin-top: 30px;
-  }
-
-  button {
-    padding: 10px 28px;
-    margin: 5px 8px;
-    font-family: inherit;
-    font-size: 16px;
-    cursor: pointer;
-    border: 1px solid #555;
-    background: #f7f7f7;
-    border-radius: 3px;
-  }
-
-  button:hover {
-    background: #e5e5e5;
-  }
-
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  #sendStatus {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-  }
-
-  @media (max-width: 600px) {
-    body {
-      padding: 10px 5px;
-    }
-
-    .paper {
-      padding: 25px 18px;
-    }
-
-    h1 {
-      font-size: 23px;
-      letter-spacing: 3px;
-    }
-
-    .info {
-      gap: 12px;
-    }
-
-    .info-item {
-      font-size: 14px;
-    }
-
-    .label {
-      width: 75px;
-      font-size: 15px;
-    }
-
-    .answer-input {
-      font-size: 16px;
-    }
-
-    .question {
-      gap: 5px;
-    }
-  }
-
-  @media print {
-    body {
-      background: #fff;
-      padding: 0;
-    }
-
-    .paper {
-      box-shadow: none;
-      max-width: none;
-      padding: 20px;
-    }
-
-    button,
-    #sendStatus,
-    .comment-area {
-      display: none;
-    }
-
-    .answer-input {
-      border-bottom: 1px solid #222;
-    }
-  }
+}
 </style>
 </head>
 
@@ -258,9 +259,28 @@
       氏名：
       <input type="text" id="studentName" autocomplete="name">
     </div>
+
     <div class="info-item">
       得点：
       <span id="topScore"></span>
+    </div>
+  </div>
+
+  <!-- =====================================
+       回答上の注意事項
+       ここを書き換えてください
+       ===================================== -->
+  <div class="notice">
+    <div class="notice-title">解答上の注意事項</div>
+
+    <div class="notice-content">
+      <ul>
+        <li>氏名を必ず入力してください。</li>
+        <li>解答は指定された欄に入力してください。</li>
+        <li>分数は「1/2」、平方根は「√2」のように入力してください。</li>
+        <li>解答を入力したら「採点して回答を送信」を押してください。</li>
+        <li>送信後は、回答を変更して再送信しないようにしてください。</li>
+      </ul>
     </div>
   </div>
 
@@ -363,12 +383,15 @@
 
   <div class="comment-area">
     <label for="comment">コメント（任意）</label>
-    <textarea id="comment" placeholder="質問やコメントがあれば入力してください。"></textarea>
+    <textarea id="comment"
+      placeholder="質問やコメントがあれば入力してください。"></textarea>
   </div>
 
   <div class="buttons">
-    <button type="button" onclick="grade()">採点</button>
-    <button type="button" onclick="sendAnswers()" id="sendButton">解答を送信</button>
+    <button type="button" onclick="gradeAndSend()" id="sendButton">
+      採点して回答を送信
+    </button>
+
     <button type="button" onclick="resetAll()">リセット</button>
   </div>
 
@@ -379,238 +402,317 @@
 </div>
 
 <script>
-  // ==========================================
-  // Google Apps ScriptのURLをここに設定
-  // ==========================================
-  const GAS_URL = "https://script.google.com/macros/s/AKfycby-C_hc1WDQAzpdMBBR5CYi0mHK3-jTL2IFP_Z4lYDQhlQMH6SwHUMJa270wDpsGYD3vg/exec";
 
-  // ==========================================
-  // 模範解答
-  // acceptedに書かれた表記を正解として扱う
-  // ==========================================
-  const answers = {
-    q1_1: {
-      accepted: ["1"],
-      points: 10
-    },
-    q1_2: {
-      accepted: ["10π^2", "10*pi^2"],
-      points: 10
-    },
-    q1_3: {
-      accepted: ["8"],
-      points: 10
-    },
-    q1_4: {
-      accepted: ["π", "pi"],
-      points: 10
-    },
-    q2: {
-      accepted: ["√2-1", "sqrt(2)-1"],
-      points: 10
-    },
-    q3_1: {
-      accepted: ["27/2"],
-      points: 10
-    },
-    q3_2: {
-      accepted: [
-        "(81k+27)/8"
-      ],
-      points: 10
-    },
-    q5_1_i: {
-      accepted: ["16/9"],
-      points: 10
-    },
-    q5_1_ii: {
-      accepted: [
-        "(450π/9)-(192/7)",
-        "450π/9-192/7",
-        "50π-192/7",
-        "50*pi-192/7"
-      ],
-      points: 10
-    },
-    q5_2: {
-      accepted: ["2,3", "3,2"],
-      points: 10
+// ==========================================
+// Google Apps ScriptのURL
+// ==========================================
+const GAS_URL = "https://script.google.com/macros/s/AKfycby-C_hc1WDQAzpdMBBR5CYi0mHK3-jTL2IFP_Z4lYDQhlQMH6SwHUMJa270wDpsGYD3vg/exec";
+
+
+// ==========================================
+// 模範解答
+// ==========================================
+const answers = {
+  q1_1: { accepted: ["1"], points: 10 },
+  q1_2: { accepted: ["10π^2"], points: 10 },
+  q1_3: { accepted: ["8"], points: 10 },
+  q1_4: { accepted: ["π"], points: 10 },
+
+  q2: { accepted: ["√2-1"], points: 10 },
+
+  q3_1: { accepted: ["27/2"], points: 10 },
+  q3_2: { accepted: ["(81k+27)/8"], points: 10 },
+
+  q5_1_i: { accepted: ["16/9"], points: 10 },
+
+  q5_1_ii: {
+    accepted: ["(450π/9)-(192/7)"],
+    points: 10
+  },
+
+  q5_2: { accepted: ["2,3"], points: 10 }
+};
+
+const allQuestionIds = [
+  "q1_1", "q1_2", "q1_3", "q1_4",
+  "q2",
+  "q3_1", "q3_2",
+  "q4_1", "q4_2",
+  "q5_1_i", "q5_1_ii", "q5_2"
+];
+
+const totalPoints = 100;
+
+
+// ==========================================
+// 数式の表記を統一
+// ==========================================
+function normalizeMath(value) {
+  return value
+    .trim()
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .replace(/−/g, "-")
+    .replace(/ー/g, "-")
+    .replace(/×/g, "*")
+    .replace(/·/g, "*")
+    .replace(/÷/g, "/")
+    .replace(/π/g, "pi")
+    .replace(/√\s*\(/g, "sqrt(")
+    .replace(/√\s*([0-9]+)/g, "sqrt($1)")
+    .toLowerCase();
+}
+
+
+// ==========================================
+// 許可する数式の文字を確認
+// ==========================================
+function isAllowedExpression(expression) {
+  if (!expression) return false;
+
+  return /^[0-9a-z+\-*/^().]+$/i.test(expression);
+}
+
+
+// ==========================================
+// 数学的な同値判定
+// ==========================================
+function mathEquivalent(userAnswer, correctAnswer) {
+  try {
+    const user = normalizeMath(userAnswer);
+    const correct = normalizeMath(correctAnswer);
+
+    if (!user || !correct) return false;
+
+    if (
+      !isAllowedExpression(user) ||
+      !isAllowedExpression(correct)
+    ) {
+      return false;
     }
-  };
 
-  const totalPoints = 100;
-  const allQuestionIds = [
-    "q1_1", "q1_2", "q1_3", "q1_4",
-    "q2",
-    "q3_1", "q3_2",
-    "q4_1", "q4_2",
-    "q5_1_i", "q5_1_ii", "q5_2"
-  ];
+    if (typeof nerdamer !== "function") {
+      throw new Error("数式処理ライブラリが読み込まれていません。");
+    }
 
-  let latestResults = null;
-  let latestScore = null;
+    return nerdamer(user).eq(nerdamer(correct));
 
-  // ==========================================
-  // 入力文字の正規化
-  // ==========================================
-  function normalize(value) {
-    return value
-      .trim()
-      .replace(/²/g, "^2")
-      .replace(/³/g, "^3")
-      .normalize("NFKC")
-      .replace(/\s+/g, "")
-      .replace(/−/g, "-")
-      .replace(/ー/g, "-")
-      .replace(/×/g, "*")
-      .replace(/·/g, "*")
-      .replace(/÷/g, "/")
-      .replace(/π/g, "pi")
-      .replace(/√2/g, "sqrt(2)")
-      .toLowerCase();
+  } catch (error) {
+    console.warn("数式判定エラー:", error);
+    return false;
+  }
+}
+
+
+// ==========================================
+// 正誤判定
+// ==========================================
+function isCorrectAnswer(userAnswer, acceptedAnswers, questionId) {
+  const user = userAnswer.trim();
+
+  if (!user) return false;
+
+  // 大問5 (2)：2つの数値の順番を問わない
+  if (questionId === "q5_2") {
+    const userParts = user.split(",");
+
+    if (userParts.length !== 2) return false;
+
+    const correctParts = acceptedAnswers[0].split(",");
+
+    return (
+      (
+        mathEquivalent(userParts[0], correctParts[0]) &&
+        mathEquivalent(userParts[1], correctParts[1])
+      ) ||
+      (
+        mathEquivalent(userParts[0], correctParts[1]) &&
+        mathEquivalent(userParts[1], correctParts[0])
+      )
+    );
   }
 
-  // ==========================================
-  // 採点
-  // ==========================================
-  function grade() {
-    let score = 0;
-    const results = {};
+  return acceptedAnswers.some(correct =>
+    mathEquivalent(user, correct)
+  );
+}
 
-    for (const id in answers) {
-      const input = document.getElementById(id);
-      const result = document.getElementById("r_" + id);
 
-      const userAnswer = normalize(input.value);
-      const correctAnswers = answers[id].accepted.map(normalize);
-
-      const isCorrect =
-        userAnswer !== "" &&
-        correctAnswers.includes(userAnswer);
-
-      results[id] = isCorrect;
-
-      if (isCorrect) {
-        score += answers[id].points;
-        result.textContent = "○";
-        result.style.color = "#16833b";
-      } else {
-        result.textContent = "×";
-        result.style.color = "#d22";
-      }
-    }
-
-    latestScore = score;
-    latestResults = results;
-
-    document.getElementById("score").textContent =
-      `得点：${score} / ${totalPoints} 点`;
-
-    document.getElementById("topScore").textContent =
-      `${score} / ${totalPoints} 点`;
-
-    document.getElementById("sendStatus").textContent = "";
+// ==========================================
+// 採点
+// ==========================================
+function grade() {
+  if (typeof nerdamer !== "function") {
+    alert(
+      "数式処理ライブラリを読み込めませんでした。\n" +
+      "インターネット接続を確認して、ページを再読み込みしてください。"
+    );
+    return null;
   }
 
-  // ==========================================
-  // Googleスプレッドシートへ送信
-  // ==========================================
-  async function sendAnswers() {
-    if (!GAS_URL || GAS_URL === "https://script.google.com/macros/s/AKfycbyM0nzl9_Gag6JtYS1vDlIfkNzcTPpD-MFg7hSdu1CvHSy1J8KfI6FexfJdY3tV3IB4kA/exec") {
-      alert("GASのURLが設定されていません。");
+  let score = 0;
+  const results = {};
+
+  for (const id in answers) {
+    const input = document.getElementById(id);
+    const result = document.getElementById("r_" + id);
+
+    const isCorrect = isCorrectAnswer(
+      input.value,
+      answers[id].accepted,
+      id
+    );
+
+    results[id] = isCorrect;
+
+    if (isCorrect) {
+      score += answers[id].points;
+      result.textContent = "○";
+      result.style.color = "#16833b";
+    } else {
+      result.textContent = "×";
+      result.style.color = "#d22";
+    }
+  }
+
+  document.getElementById("score").textContent =
+    `得点：${score} / ${totalPoints} 点`;
+
+  document.getElementById("topScore").textContent =
+    `${score} / ${totalPoints} 点`;
+
+  return { score, results };
+}
+
+
+// ==========================================
+// 採点して回答を送信
+// ==========================================
+async function gradeAndSend() {
+
+  if (!GAS_URL || GAS_URL === "https://script.google.com/macros/s/AKfycby-C_hc1WDQAzpdMBBR5CYi0mHK3-jTL2IFP_Z4lYDQhlQMH6SwHUMJa270wDpsGYD3vg/exec") {
+    alert("GASのURLが設定されていません。");
+    return;
+  }
+
+  const name =
+    document.getElementById("studentName").value.trim();
+
+  if (name === "") {
+    alert("氏名を入力してください。");
+    return;
+  }
+
+  if (!confirm("採点して回答を送信しますか？\n送信後はスプレッドシートに記録されます。")) {
+    return;
+  }
+
+  const button = document.getElementById("sendButton");
+
+  button.disabled = true;
+  button.textContent = "採点・送信中...";
+
+  try {
+
+    // 先に採点
+    const grading = grade();
+
+    if (grading === null) {
       return;
     }
 
-    // 採点前なら自動で採点する
-    if (latestResults === null) {
-      grade();
-    }
+    const score = grading.score;
+    const results = grading.results;
 
-    const name = document.getElementById("studentName").value.trim();
-
-    if (name === "") {
-      alert("氏名を入力してください。");
-      return;
-    }
-
-    if (!confirm("この解答を送信しますか？")) {
-      return;
-    }
-
-    const button = document.getElementById("sendButton");
-    button.disabled = true;
-    button.textContent = "送信中...";
-
+    // 送信データ作成
     const formData = new FormData();
 
     formData.append("name", name);
-    formData.append("time", new Date().toLocaleString("ja-JP"));
-    formData.append("score", latestScore);
+
+    formData.append(
+      "time",
+      new Date().toLocaleString("ja-JP")
+    );
+
+    formData.append("score", score);
     formData.append("total", totalPoints);
+
     formData.append(
       "comment",
       document.getElementById("comment").value
     );
 
+    // 各問題の解答と採点結果
     for (const id of allQuestionIds) {
+
       const input = document.getElementById(id);
+
       formData.append(id, input.value);
 
-      if (latestResults && id in latestResults) {
-        formData.append(id + "_result",
-          latestResults[id] ? "正解" : "不正解");
+      if (id in results) {
+        formData.append(
+          id + "_result",
+          results[id] ? "正解" : "不正解"
+        );
       } else {
         formData.append(id + "_result", "採点対象外");
       }
     }
 
-    try {
-      await fetch(GAS_URL, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors"
-      });
+    // GASへ送信
+    await fetch(GAS_URL, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors"
+    });
 
-      document.getElementById("sendStatus").textContent =
-        "送信処理を行いました。スプレッドシートに記録されたか確認してください。";
+    document.getElementById("sendStatus").textContent =
+      "送信処理を行いました。スプレッドシートへの記録を確認してください。";
 
-    } catch (error) {
-      document.getElementById("sendStatus").textContent =
-        "送信時にエラーが発生しました。通信環境やGASの設定を確認してください。";
-    } finally {
-      button.disabled = false;
-      button.textContent = "解答を送信";
+  } catch (error) {
+
+    document.getElementById("sendStatus").textContent =
+      "送信時にエラーが発生しました。通信環境やGASの設定を確認してください。";
+
+    console.error(error);
+
+  } finally {
+
+    button.disabled = false;
+    button.textContent = "採点して回答を送信";
+
+  }
+}
+
+
+// ==========================================
+// リセット
+// ==========================================
+function resetAll() {
+
+  if (!confirm("入力内容と採点結果をすべて消去しますか？")) {
+    return;
+  }
+
+  for (const id of allQuestionIds) {
+
+    document.getElementById(id).value = "";
+
+    const result = document.getElementById("r_" + id);
+
+    if (answers[id]) {
+      result.textContent = "";
+      result.style.color = "";
     }
   }
 
-  // ==========================================
-  // リセット
-  // ==========================================
-  function resetAll() {
-    if (!confirm("入力内容と採点結果をすべて消去しますか？")) {
-      return;
-    }
+  document.getElementById("studentName").value = "";
+  document.getElementById("comment").value = "";
+  document.getElementById("score").textContent = "";
+  document.getElementById("topScore").textContent = "";
+  document.getElementById("sendStatus").textContent = "";
+}
 
-    for (const id of allQuestionIds) {
-      document.getElementById(id).value = "";
-
-      const result = document.getElementById("r_" + id);
-
-      if (answers[id]) {
-        result.textContent = "";
-        result.style.color = "";
-      }
-    }
-
-    document.getElementById("studentName").value = "";
-    document.getElementById("comment").value = "";
-    document.getElementById("score").textContent = "";
-    document.getElementById("topScore").textContent = "";
-    document.getElementById("sendStatus").textContent = "";
-
-    latestResults = null;
-    latestScore = null;
-  }
 </script>
 
 </body>
