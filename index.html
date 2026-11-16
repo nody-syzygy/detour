@@ -665,7 +665,35 @@ if (!GAS_URL || GAS_URL === "ここにGASのURL") {
     const results = grading.results;
 
     // 送信データ作成
-    const formData = new FormData();
+    const formData = new URLSearchParams();
+
+// すべての解答を追加
+for (const id of allQuestionIds) {
+  const input = document.getElementById(id);
+  formData.append(id, input.value);
+
+  if (id in results) {
+    formData.append(
+      id + "_result",
+      results[id] ? "正解" : "不正解"
+    );
+  } else {
+    formData.append(id + "_result", "採点対象外");
+  }
+}
+
+// 基本情報
+formData.append("time", new Date().toISOString());
+formData.append("name", document.getElementById("name").value);
+formData.append("score", score);
+formData.append("total", totalPoints);
+formData.append("comment", document.getElementById("comment").value);
+
+await fetch(GAS_URL, {
+  method: "POST",
+  body: formData,
+  mode: "no-cors"
+});;
 
     formData.append("name", name);
 
